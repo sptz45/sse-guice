@@ -1,0 +1,176 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.tzavellas</groupId>
+	<artifactId>sse-guice</artifactId>
+	<version>0.4-SNAPSHOT</version>
+	<inceptionYear>2010</inceptionYear>
+	<name>sse-guice</name>
+	<description>Make the Guice EDSL more Scala friendly</description>
+
+    <organization>
+        <name>spiros.blog()</name>
+        <url>http://www.tzavellas.com</url>
+    </organization>
+
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+
+    <issueManagement>
+        <system>GitHub</system>
+        <url>http://github.com/sptz45/sse-jmx/issues</url>
+    </issueManagement>
+
+    <developers>
+        <developer>
+            <id>sptz45</id>
+            <name>Spiros Tzavellas</name>
+            <email>spiros at tzavellas dot com</email>
+            <url>http://www.tzavellas.com</url>
+            <timezone>+2</timezone>
+            <roles>
+                <role>developer</role>
+            </roles>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git://github.com/sptz45/sse-guice.git</connection>
+        <developerConnection>scm:git:git@github.com:sptz45/sse-guice.git</developerConnection>
+        <url>http://github.com/sptz45/sse-guice/tree/master</url>
+    </scm>
+	
+	<properties>
+	   <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	   <scala.version>2.8.0</scala.version>
+	</properties>
+
+	<repositories>
+		<repository>
+			<id>scala-tools.org</id>
+			<name>Scala-Tools Maven2 Repository</name>
+			<url>http://scala-tools.org/repo-releases</url>
+		</repository>
+	</repositories>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>scala-tools.org</id>
+			<name>Scala-Tools Maven2 Repository</name>
+			<url>http://scala-tools.org/repo-releases</url>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.scala-lang</groupId>
+			<artifactId>scala-library</artifactId>
+			<version>${scala.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.inject</groupId>
+			<artifactId>guice</artifactId>
+			<version>2.0</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.7</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<sourceDirectory>src/main/scala</sourceDirectory>
+		<testSourceDirectory>src/test/scala</testSourceDirectory>
+		<plugins>
+			<plugin>
+				<groupId>org.scala-tools</groupId>
+				<artifactId>maven-scala-plugin</artifactId>
+				<version>2.14.1</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>compile</goal>
+							<goal>testCompile</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<scalaVersion>${scala.version}</scalaVersion>
+					<args>
+						<arg>-make:transitivenocp</arg>
+						<arg>-dependencyfile</arg>
+						<arg>${project.build.directory}/.scala_dependencies</arg>
+					</args>
+				</configuration>
+			</plugin>
+			<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>2.3.1</version>
+                <configuration>
+                    <archive>
+                        <compress>true</compress>
+                        <index>true</index>
+                        <addMavenDescriptor>false</addMavenDescriptor>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.1.2</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+            	<groupId>org.apache.maven.plugins</groupId>
+            	<artifactId>maven-site-plugin</artifactId>
+            	<version>3.0-beta-1</version>
+            	<configuration>
+            		<reportPlugins>
+            			<plugin>
+            				<groupId>org.scala-tools</groupId>
+            				<artifactId>maven-scala-plugin</artifactId>
+            				<version>2.14.1</version>
+            				<configuration>
+            					<scalaVersion>${scala.version}</scalaVersion>
+            				</configuration>
+            			</plugin>
+            		</reportPlugins>
+            	</configuration>
+            </plugin>
+		</plugins>
+		<extensions>
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-ssh</artifactId>
+                <version>1.0-beta-6</version>
+            </extension>
+        </extensions>
+	</build>
+
+	<distributionManagement>
+        <repository>
+            <id>tzavellas.com-repo</id>
+            <url>scp://www.tzavellas.com:90/home/spiros/public_html/maven/</url>
+        </repository>
+        <site>
+            <id>tzavellas.com-site</id>
+            <url>scp://www.tzavellas.com:90/home/spiros/public_html/projects/sse-guice
+            </url>
+        </site>
+    </distributionManagement>
+</project>

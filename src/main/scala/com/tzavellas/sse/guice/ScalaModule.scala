@@ -1,3 +1,7 @@
+/* ------------------ sse-guice ------------------ *\
+ * Licensed under the Apache License, Version 2.0. *
+ * Author: Spiros Tzavellas                        *
+\* ----------------------------------------------- */
 package com.tzavellas.sse.guice
 
 import com.google.inject._

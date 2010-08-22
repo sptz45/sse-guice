@@ -20,9 +20,9 @@ instead of:
 
 	bind(classOf[Service]).to(classOf[ServiceImpl]).in(classOf[Singleton])
 
-which is what we have to write when using Guice from Scala.
+which is what we have to write when using Guice in Scala.
 
-An added benefit of `Manifest`s is that then not only allow us to get rid of
+An added benefit of `Manifest`s is that they not only allow us to get rid of
 classes but also `TypeLiteral`s. To define a binding for a generic type in
 Guice (because of erasure) we have to construct a `TypeLiteral`. For example
 to bind `Validator[Registration]` to `RegistrationVSpec` we have to write:

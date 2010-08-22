@@ -5,40 +5,44 @@
 package com.tzavellas.sse.guice
 
 import org.junit.Test
+import org.junit.Assert._
 import com.google.inject._
+import com.google.inject.name._
 import Helpers._
 
 class ScalaModuleTest {
   
-  val injector = Guice.createInjector(new SampleModule)
+  val in = Guice.createInjector(new SampleModule)
   
   @Test
   def test_for_smoke() {
-    injector.getInstance(key[Holder[String]])
-    injector.getInstance(key[String])
+    assertEquals("holder", in.getInstance(key[Holder[String]]).value)
+    assertEquals("provider", in.getInstance(classOf[String]))
+    assertEquals("21", in.getInstance(classOf[StringUtils]).reverse("12"))
   }
 }
 
 class SampleModule extends ScalaModule {
   
-  import com.google.inject.name._
-  
   def configure() {
 
-    //bind[String].annotatedWith[Named].to[String].in[Singleton]
+    bind[Holder[String]].to[StringHolder].in[Singleton]
+    bindConstant.annotatedWithName("holderValue").to("holder")
     
-    //bind[Holder[String]].toInstance(new StringHolder)
+    bind[String].toProvider[StringProvider]
     
-    bind[Holder[String]].to[StringHolder]
-    
-    //bind[String].toInstance("lala")
-    bind[String].toProvider[StringProvider].in[Singleton]
+    bind[String => String].toInstance(x => x.reverse)
+    bind[StringUtils]
   }
 }
 
+class StringUtils @Inject() (val reverse: String => String)
+
 class StringProvider extends Provider[String] {
-  def get = ""
+  def get = "provider"
 }
 
 trait Holder[T] { def value: T }
-class StringHolder extends Holder[String] { def value = "hello" }
+
+class StringHolder @Inject() (@Named("holderValue") val value: String)
+  extends Holder[String]

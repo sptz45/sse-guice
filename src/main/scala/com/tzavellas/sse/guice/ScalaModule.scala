@@ -5,18 +5,29 @@
 package com.tzavellas.sse.guice
 
 import com.google.inject._
-import com.google.inject.binder.AnnotatedBindingBuilder
+import com.google.inject.binder._
 import binder._
 
 abstract class ScalaModule extends AbstractModule {
 
-  def bind[A](implicit a: Manifest[A]): RichAnnotatedBindingBuilder[A] = {
-    val builder = a.typeArguments match {
-      case Nil => bind(a.erasure)
-      case _   => bind(Helpers.typeLiteral(a))
+  protected def bind[T](implicit m: Manifest[T]): RichAnnotatedBindingBuilder[T] = {
+    m.typeArguments match {
+      case Nil => bind(m.erasure.asInstanceOf[Class[T]])
+      case _   => bind(Helpers.typeLiteral(m))
     }
-    new RichAnnotatedBindingBuilder(builder.asInstanceOf[AnnotatedBindingBuilder[A]])
   }
+  
+  protected override def bind[T](clazz: Class[T]) = new RichAnnotatedBindingBuilder(super.bind(clazz))
+  
+  protected override def bind[T](key: Key[T]): RichLinkedBindingBuilder[T] =
+    new RichLinkedBindingBuilderImpl(super.bind(key))
+  
+  
+  protected override def bind[T](typeLiteral: TypeLiteral[T]) =
+    new RichAnnotatedBindingBuilder(super.bind(typeLiteral))
   
   override def bindConstant() = new RichAnnotatedConstantBindingBuilder(super.bindConstant)
 }
+
+private class RichLinkedBindingBuilderImpl[T](val builder: LinkedBindingBuilder[T])
+extends RichLinkedBindingBuilder[T]

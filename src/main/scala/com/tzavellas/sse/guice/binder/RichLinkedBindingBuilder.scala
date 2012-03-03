@@ -5,8 +5,10 @@
 package com.tzavellas.sse.guice
 package binder
 
+import javax.inject.{ Provider => JProvider }
 import com.google.inject._
 import com.google.inject.binder.LinkedBindingBuilder
+import java.lang.reflect.Constructor
 
 trait RichLinkedBindingBuilder[T] extends LinkedBindingBuilder[T]
                                      with RichScopedBindingBuilder {
@@ -41,12 +43,12 @@ trait RichLinkedBindingBuilder[T] extends LinkedBindingBuilder[T]
     builder.toInstance(instance)
   }
   
-  def toProvider(providerType: Class[_ <: Provider[_ <: T]]): RichScopedBindingBuilder = {
+  def toProvider(providerType: Class[_ <: JProvider[_ <: T]]): RichScopedBindingBuilder = {
     builder.toProvider(providerType)
     this
   }
   
-  def toProvider(providerKey: Key[_ <: Provider[_ <: T]]): RichScopedBindingBuilder = {
+  def toProvider(providerKey: Key[_ <: JProvider[_ <: T]]): RichScopedBindingBuilder = {
     builder.toProvider(providerKey)
     this
   }
@@ -58,6 +60,26 @@ trait RichLinkedBindingBuilder[T] extends LinkedBindingBuilder[T]
   
   def toProvider[P <: Provider[_ <: T]](implicit p: Manifest[P]): RichScopedBindingBuilder = {
     builder.toProvider(p.erasure.asInstanceOf[Class[P]])
+    this
+  }
+
+  def toProvider(typeLiteral: TypeLiteral[_ <: JProvider[_ <: T]]) : RichScopedBindingBuilder = {
+    builder.toProvider(typeLiteral)
+    this
+  }
+
+  def toConstructor[S <: T](constructor: Constructor[S]): RichScopedBindingBuilder = {
+    builder.toConstructor(constructor)
+    this
+  };
+
+  def toConstructor[S <: T](constructor: Constructor[S], typeLiteral: TypeLiteral[_ <: S]): RichScopedBindingBuilder = {
+    builder.toConstructor(constructor, typeLiteral)
+    this
+  };
+
+  def toConstructor[I <:T](constructor: Constructor[I])(implicit i: Manifest[I]): RichScopedBindingBuilder = {
+    builder.toConstructor(constructor, Helpers.typeLiteral(i))
     this
   }
 }

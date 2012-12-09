@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.tzavellas</groupId>
 	<artifactId>sse-guice</artifactId>
-	<version>0.4-SNAPSHOT</version>
+	<version>0.5</version>
 	<inceptionYear>2010</inceptionYear>
 	<name>sse-guice</name>
 	<description>Make the Guice EDSL more Scala friendly</description>
@@ -46,7 +46,7 @@
 	
 	<properties>
 	   <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	   <scala.version>2.9.1</scala.version>
+	   <scala.version>2.10.0-RC1</scala.version>
 	</properties>
 
 	<dependencies>

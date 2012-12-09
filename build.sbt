@@ -4,7 +4,7 @@ name := "sse-guice"
 
 version := "0.5"
 
-scalaVersion := "2.10.0-M7"
+scalaVersion := "2.10.0-RC1"
 
 libraryDependencies ++= Seq(
   "com.google.inject" % "guice" % "3.0",

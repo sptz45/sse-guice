@@ -32,7 +32,7 @@ trait RichLinkedBindingBuilder[T] extends LinkedBindingBuilder[T]
   
   def to[I <:T](implicit i: Manifest[I]): RichScopedBindingBuilder = {
     if (i.typeArguments.isEmpty) {
-      builder.to(i.erasure.asInstanceOf[Class[I]])
+      builder.to(i.runtimeClass.asInstanceOf[Class[I]])
     } else {
       builder.to(Helpers.typeLiteral(i))
     }
@@ -60,7 +60,7 @@ trait RichLinkedBindingBuilder[T] extends LinkedBindingBuilder[T]
   
   def toProvider[P <: Provider[_ <: T]](implicit p: Manifest[P]): RichScopedBindingBuilder = {
     if (p.typeArguments.isEmpty) {
-      builder.toProvider(p.erasure.asInstanceOf[Class[P]])
+      builder.toProvider(p.runtimeClass.asInstanceOf[Class[P]])
     } else {
       builder.toProvider(Helpers.typeLiteral(p))
     }

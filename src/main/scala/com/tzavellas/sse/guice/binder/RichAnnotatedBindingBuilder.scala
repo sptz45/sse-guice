@@ -23,7 +23,7 @@ class RichAnnotatedBindingBuilder[T](val builder: AnnotatedBindingBuilder[T])
   }
   
   def annotatedWith[A <: Annotation](implicit a: Manifest[A]): RichLinkedBindingBuilder[T] = {
-    builder.annotatedWith(a.erasure.asInstanceOf[Class[A]])
+    builder.annotatedWith(a.runtimeClass.asInstanceOf[Class[A]])
     this
   }
   

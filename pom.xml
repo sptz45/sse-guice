@@ -99,6 +99,8 @@
 						<arg>-deprecation</arg>
 						<arg>-unchecked</arg>
 						<arg>-optimize</arg>
+						<arg>-encoding</arg>
+						<arg>${project.build.sourceEncoding}</arg>
 					</args>
 				</configuration>
 			</plugin>

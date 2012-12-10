@@ -12,7 +12,7 @@ abstract class ScalaModule extends AbstractModule {
 
   protected def bind[T](implicit m: Manifest[T]): RichAnnotatedBindingBuilder[T] = {
     m.typeArguments match {
-      case Nil => bind(m.erasure.asInstanceOf[Class[T]])
+      case Nil => bind(m.runtimeClass.asInstanceOf[Class[T]])
       case _   => bind(Helpers.typeLiteral(m))
     }
   }

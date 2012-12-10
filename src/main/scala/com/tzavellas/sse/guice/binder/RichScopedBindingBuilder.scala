@@ -25,6 +25,6 @@ trait RichScopedBindingBuilder extends ScopedBindingBuilder {
   }
   
   def in[A <: Annotation](implicit ann: Manifest[A]) {
-    builder.in(ann.erasure.asInstanceOf[Class[A]])
+    builder.in(ann.runtimeClass.asInstanceOf[Class[A]])
   }
 }

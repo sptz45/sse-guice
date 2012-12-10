@@ -20,7 +20,7 @@ class RichAnnotatedConstantBindingBuilder(val builder: AnnotatedConstantBindingB
   }
   
   def annotatedWith[A <: Annotation](implicit a: Manifest[A]): ConstantBindingBuilder = {
-    builder.annotatedWith(a.erasure.asInstanceOf[Class[A]])
+    builder.annotatedWith(a.runtimeClass.asInstanceOf[Class[A]])
   }
   
   def annotatedWithName(name: String): ConstantBindingBuilder = {

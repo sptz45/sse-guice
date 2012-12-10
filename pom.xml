@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.tzavellas</groupId>
 	<artifactId>sse-guice</artifactId>
-	<version>0.4-SNAPSHOT</version>
+	<version>0.6-SNAPSHOT</version>
 	<inceptionYear>2010</inceptionYear>
 	<name>sse-guice</name>
 	<description>Make the Guice EDSL more Scala friendly</description>
@@ -46,7 +46,7 @@
 	
 	<properties>
 	   <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	   <scala.version>2.9.1</scala.version>
+	   <scala.version>2.9.2</scala.version>
 	</properties>
 
 	<dependencies>
@@ -63,7 +63,7 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.10</version>
+			<version>4.11</version>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
@@ -73,9 +73,9 @@
 		<testSourceDirectory>src/test/scala</testSourceDirectory>
 		<plugins>
 			<plugin>
-				<groupId>org.scala-tools</groupId>
-				<artifactId>maven-scala-plugin</artifactId>
-				<version>2.15.2</version>
+				<groupId>net.alchim31.maven</groupId>
+				<artifactId>scala-maven-plugin</artifactId>
+				<version>3.1.0</version>
 				<executions>
 					<execution>
 						<goals>
@@ -86,17 +86,19 @@
 				</executions>
 				<configuration>
 					<scalaVersion>${scala.version}</scalaVersion>
+					<recompileMode>incremental</recompileMode>
+					<useZincServer>true</useZincServer>
 					<args>
-						<arg>-make:transitivenocp</arg>
-						<arg>-dependencyfile</arg>
-						<arg>${project.build.directory}/.scala_dependencies</arg>
+						<arg>-deprecation</arg>
+						<arg>-unchecked</arg>
+						<arg>-optimize</arg>
 					</args>
 				</configuration>
 			</plugin>
 			<plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
-                <version>2.3.1</version>
+                <version>2.4</version>
                 <configuration>
                     <archive>
                         <compress>true</compress>
@@ -108,7 +110,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>2.1.2</version>
+                <version>2.2.1</version>
                 <executions>
                     <execution>
                         <id>attach-sources</id>
@@ -122,15 +124,18 @@
             <plugin>
             	<groupId>org.apache.maven.plugins</groupId>
             	<artifactId>maven-site-plugin</artifactId>
-            	<version>3.0</version>
+            	<version>3.2</version>
             	<configuration>
             		<reportPlugins>
             			<plugin>
-            				<groupId>org.scala-tools</groupId>
-            				<artifactId>maven-scala-plugin</artifactId>
-            				<version>2.15.2</version>
+            				<groupId>net.alchim31.maven</groupId>
+            				<artifactId>scala-maven-plugin</artifactId>
+            				<version>3.1.0</version>
             				<configuration>
-            					<scalaVersion>${scala.version}</scalaVersion>
+            					<jvmArgs>
+            						<jvmArg>-Xms64m</jvmArg>
+            						<jvmArg>-Xmx1024m</jvmArg>
+            					</jvmArgs>
             				</configuration>
             			</plugin>
             		</reportPlugins>
@@ -141,7 +146,7 @@
             <extension>
                 <groupId>org.apache.maven.wagon</groupId>
                 <artifactId>wagon-ssh</artifactId>
-                <version>1.0</version>
+                <version>2.3</version>
             </extension>
         </extensions>
 	</build>

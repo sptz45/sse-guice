@@ -9,7 +9,7 @@
 
 	<groupId>com.tzavellas</groupId>
 	<artifactId>sse-guice</artifactId>
-	<version>0.6</version>
+	<version>0.7-SNAPSHOT</version>
 	<inceptionYear>2010</inceptionYear>
 	<name>sse-guice</name>
 	<description>Make the Guice EDSL more Scala friendly</description>

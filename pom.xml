@@ -181,24 +181,5 @@
             	</executions>
             </plugin>
 		</plugins>
-		<extensions>
-            <extension>
-                <groupId>org.apache.maven.wagon</groupId>
-                <artifactId>wagon-ssh</artifactId>
-                <version>2.3</version>
-            </extension>
-        </extensions>
 	</build>
-
-	<distributionManagement>
-        <repository>
-            <id>tzavellas.com-repo</id>
-            <url>scp://www.tzavellas.com:90/home/spiros/public_html/maven/</url>
-        </repository>
-        <site>
-            <id>tzavellas.com-site</id>
-            <url>scp://www.tzavellas.com:90/home/spiros/public_html/projects/sse-guice
-            </url>
-        </site>
-    </distributionManagement>
 </project>

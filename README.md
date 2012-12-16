@@ -38,6 +38,24 @@ automatically. This allows us to write:
 
 and avoid the explicit creation of the `TypeLiteral`.
 
+## Setup
+
+For *Scala 2.9.x* use:
+
+	<dependency>
+	  <groupId>com.tzavellas</groupId>
+	  <artifactId>sse-guice</artifactId>
+	  <version>0.6.1</version>
+	</dependency>
+
+For *Scala 2.10.x* use:
+
+	<dependency>
+	  <groupId>com.tzavellas</groupId>
+	  <artifactId>sse-guice</artifactId>
+	  <version>0.7.0</version>
+	</dependency>
+
 ## Usage
 
 To use this library your Guice modules must extend the `ScalaModule` abstract

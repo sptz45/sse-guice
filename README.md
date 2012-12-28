@@ -53,7 +53,7 @@ For *Scala 2.10.x* use:
 	<dependency>
 	  <groupId>com.tzavellas</groupId>
 	  <artifactId>sse-guice</artifactId>
-	  <version>0.7.0</version>
+	  <version>0.7.1</version>
 	</dependency>
 
 ## Usage

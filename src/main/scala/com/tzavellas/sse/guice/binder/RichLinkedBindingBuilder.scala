@@ -34,7 +34,7 @@ trait RichLinkedBindingBuilder[T] extends LinkedBindingBuilder[T]
     if (i.typeArguments.isEmpty) {
       builder.to(i.runtimeClass.asInstanceOf[Class[I]])
     } else {
-      builder.to(Helpers.typeLiteral(i))
+      builder.to(GuiceUtils.typeLiteralOf(i))
     }
     this
   }
@@ -62,7 +62,7 @@ trait RichLinkedBindingBuilder[T] extends LinkedBindingBuilder[T]
     if (p.typeArguments.isEmpty) {
       builder.toProvider(p.runtimeClass.asInstanceOf[Class[P]])
     } else {
-      builder.toProvider(Helpers.typeLiteral(p))
+      builder.toProvider(GuiceUtils.typeLiteralOf(p))
     }
     this
   }
@@ -75,7 +75,7 @@ trait RichLinkedBindingBuilder[T] extends LinkedBindingBuilder[T]
   def toConstructor[S <: T](constructor: Constructor[S]): RichScopedBindingBuilder = {
     builder.toConstructor(constructor)
     this
-  };
+  }
 
   def toConstructor[S <: T](constructor: Constructor[S], typeLiteral: TypeLiteral[_ <: S]): RichScopedBindingBuilder = {
     builder.toConstructor(constructor, typeLiteral)
@@ -83,7 +83,7 @@ trait RichLinkedBindingBuilder[T] extends LinkedBindingBuilder[T]
   };
 
   def toConstructor[I <:T](constructor: Constructor[I])(implicit i: Manifest[I]): RichScopedBindingBuilder = {
-    builder.toConstructor(constructor, Helpers.typeLiteral(i))
+    builder.toConstructor(constructor, GuiceUtils.typeLiteralOf(i))
     this
   }
 }

@@ -8,7 +8,7 @@ import org.junit.Test
 import org.junit.Assert._
 import com.google.inject._
 import com.google.inject.name._
-import Helpers._
+import GuiceUtils._
 
 class ScalaModuleTest {
   
@@ -16,7 +16,7 @@ class ScalaModuleTest {
   
   @Test
   def test_for_smoke() {
-    assertEquals("holder", in.getInstance(key[Holder[String]]).value)
+    assertEquals("holder", in.getInstance(keyOf[Holder[String]]).value)
     assertEquals("provider", in.getInstance(classOf[String]))
     assertEquals("21", in.getInstance(classOf[StringUtils]).reverse("12"))
   }

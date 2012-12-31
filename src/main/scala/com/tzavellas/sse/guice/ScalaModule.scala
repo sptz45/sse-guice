@@ -8,12 +8,17 @@ import com.google.inject._
 import com.google.inject.binder._
 import binder._
 
+/**
+ * Extends Guice's `AbstractModule` with Scala specific functionality.
+ * 
+ * See an [[com.tzavellas.sse.guice example]] module that uses the Scala extensions.
+ */
 abstract class ScalaModule extends AbstractModule {
 
   protected def bind[T](implicit m: Manifest[T]): RichAnnotatedBindingBuilder[T] = {
     m.typeArguments match {
       case Nil => bind(m.runtimeClass.asInstanceOf[Class[T]])
-      case _   => bind(Helpers.typeLiteral(m))
+      case _   => bind(GuiceUtils.typeLiteralOf(m))
     }
   }
   

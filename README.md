@@ -14,7 +14,9 @@ DSL (defined in `com.google.inject.binder`) by adding a method that takes a
 `Manifest` for each method that takes `Class` as a parameter. This allows us to
 write:
 
+```scala
 	bind[Service].to[ServiceImpl].in[Singleton]
+```
 
 instead of:
 

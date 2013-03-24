@@ -1,6 +1,8 @@
 
 # sse-guice
 
+[![Build Status](https://secure.travis-ci.org/novus/salat.png)](http://travis-ci.org/novus/salat)
+
 A library to make the *Guice* internal DSL more *Scala* friendly.
 
 The motivation for this library is the fact that, although Scala provides lots

@@ -1,4 +1,3 @@
-
 # sse-guice
 
 [![Build Status](https://secure.travis-ci.org/sptz45/sse-guice.png)](http://travis-ci.org/sptz45/sse-guice)
@@ -79,8 +78,8 @@ interfaces of this library.
 
 ```scala
 class MyModule extends ScalaModule {
-  def configure() { bind[Service].to[ServiceImpl].in[Singleton]
-    bind[CreditCardPaymentService]
+  def configure() {
+    bind[Service].to[ServiceImpl].in[Singleton]
     bind[PaymentService].to[CreditCardPaymentService]
     bindConstant().annotatedWithName("port").to(8080)
   }

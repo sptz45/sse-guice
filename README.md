@@ -1,6 +1,7 @@
 # sse-guice
 
-[![Build Status](https://secure.travis-ci.org/sptz45/sse-guice.png)](http://travis-ci.org/sptz45/sse-guice)
+[![Build Status](https://secure.travis-ci.org/sptz45/sse-guice.png)](http://travis-ci.org/sptz45/sse-guice) ![Maven Central](http://img.shields.io/maven-central/v/com.tzavellas/sse-guice.svg)
+
 
 A library to make the *Guice* internal DSL more *Scala* friendly.
 

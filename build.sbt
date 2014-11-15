@@ -17,3 +17,5 @@ scalacOptions ++= List("-feature", "-unchecked", "-deprecation", "-target:jvm-1.
 testOptions += Tests.Argument(TestFrameworks.JUnit, "-q")
 
 //scalariformSettings
+
+jacoco.settings

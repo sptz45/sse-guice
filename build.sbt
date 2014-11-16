@@ -1,7 +1,8 @@
+import sbtrelease._
+import ReleaseStateTransformations._
 
 name := "sse-guice"
 organization := "com.tzavellas"
-version := "0.7.2-SNAPSHOT"
 
 description := "Make the Guice EDSL more Scala friendly"
 homepage := Some(url("http://www.github.com/sptz45/sse-guice"))
@@ -61,4 +62,21 @@ pomExtra := (
       </roles>
     </developer>
   </developers>
+)
+
+releaseSettings
+
+ReleaseKeys.publishArtifactsAction := PgpKeys.publishSigned.value
+ReleaseKeys.crossBuild := true
+
+ReleaseKeys.releaseProcess := Seq[ReleaseStep](
+  checkSnapshotDependencies,
+  inquireVersions,
+  runTest,
+  setReleaseVersion,
+  commitReleaseVersion,
+  tagRelease,
+  publishArtifacts,
+  setNextVersion,
+  commitNextVersion
 )

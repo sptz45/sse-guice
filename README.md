@@ -52,22 +52,14 @@ and avoid the explicit creation of the `TypeLiteral`.
 
 For *Scala 2.9.x* use:
 
-```xml
-<dependency>
-  <groupId>com.tzavellas</groupId>
-  <artifactId>sse-guice</artifactId>
-  <version>0.6.1</version>
-</dependency>
+```scala
+"com.tzavellas" % "sse-guice" % "0.6.1"
 ```
 
-For *Scala 2.10.x* use:
+For *Scala 2.10.x and 2.11.x* use:
 
-```xml
-<dependency>
-  <groupId>com.tzavellas</groupId>
-  <artifactId>sse-guice</artifactId>
-  <version>0.7.1</version>
-</dependency>
+```scala
+"com.tzavellas" %% "sse-guice" % "0.7.2"
 ```
 
 ## Usage

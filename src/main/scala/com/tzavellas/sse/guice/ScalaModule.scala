@@ -6,7 +6,7 @@ package com.tzavellas.sse.guice
 
 import com.google.inject._
 import com.google.inject.binder._
-import binder._
+import com.tzavellas.sse.guice.binder._
 
 /**
  * Extends Guice's `AbstractModule` with Scala specific functionality.

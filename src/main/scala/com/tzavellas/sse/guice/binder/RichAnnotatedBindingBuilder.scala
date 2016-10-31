@@ -5,7 +5,9 @@
 package com.tzavellas.sse.guice.binder
 
 import java.lang.annotation.Annotation
-import com.google.inject.binder.AnnotatedBindingBuilder
+import javax.inject.Provider
+
+import com.google.inject.binder.{AnnotatedBindingBuilder, ScopedBindingBuilder}
 import com.google.inject.name.Names
 
 class RichAnnotatedBindingBuilder[T](val builder: AnnotatedBindingBuilder[T])

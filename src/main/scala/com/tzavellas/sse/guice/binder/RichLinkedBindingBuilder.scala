@@ -5,9 +5,10 @@
 package com.tzavellas.sse.guice
 package binder
 
-import javax.inject.{ Provider => JProvider }
+import javax.inject.{Provider => JProvider}
+
 import com.google.inject._
-import com.google.inject.binder.LinkedBindingBuilder
+import com.google.inject.binder.{LinkedBindingBuilder, ScopedBindingBuilder}
 import java.lang.reflect.Constructor
 
 trait RichLinkedBindingBuilder[T] extends LinkedBindingBuilder[T]
@@ -72,6 +73,11 @@ trait RichLinkedBindingBuilder[T] extends LinkedBindingBuilder[T]
     this
   }
 
+  def toProvider(provider: JProvider[_ <: T]): ScopedBindingBuilder = {
+    builder.toProvider(provider)
+    this
+  }
+
   def toConstructor[S <: T](constructor: Constructor[S]): RichScopedBindingBuilder = {
     builder.toConstructor(constructor)
     this
@@ -80,7 +86,7 @@ trait RichLinkedBindingBuilder[T] extends LinkedBindingBuilder[T]
   def toConstructor[S <: T](constructor: Constructor[S], typeLiteral: TypeLiteral[_ <: S]): RichScopedBindingBuilder = {
     builder.toConstructor(constructor, typeLiteral)
     this
-  };
+  }
 
   def toConstructor[I <:T](constructor: Constructor[I])(implicit i: Manifest[I]): RichScopedBindingBuilder = {
     builder.toConstructor(constructor, GuiceUtils.typeLiteralOf(i))

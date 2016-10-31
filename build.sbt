@@ -19,16 +19,16 @@ scmInfo := Some(
   )
 )
 
-crossScalaVersions := Seq("2.10.0", "2.11.0")
-scalaVersion := "2.11.4"
+crossScalaVersions := Seq("2.10.0", "2.11.0", "2.12.0")
+scalaVersion := "2.12.0"
 
 libraryDependencies ++= Seq(
-  "com.google.inject" % "guice"           % "3.0",
+  "com.google.inject" % "guice"           % "4.1.0",
   "junit"             % "junit"           % "4.11" % "test",
   "com.novocode"      % "junit-interface" % "0.11" % "test"
 )
 
-scalacOptions ++= List("-feature", "-unchecked", "-deprecation", "-target:jvm-1.6", "-encoding", "UTF-8")
+scalacOptions ++= List("-feature", "-unchecked", "-deprecation", "-encoding", "UTF-8")
 testOptions += Tests.Argument(TestFrameworks.JUnit, "-q")
 
 //scalariformSettings

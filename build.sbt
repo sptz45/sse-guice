@@ -24,14 +24,13 @@ scalaVersion := "2.12.0"
 
 libraryDependencies ++= Seq(
   "com.google.inject" % "guice"           % "4.1.0",
-  "junit"             % "junit"           % "4.11" % "test",
+  "junit"             % "junit"           % "4.12" % "test",
   "com.novocode"      % "junit-interface" % "0.11" % "test"
 )
 
 scalacOptions ++= List("-feature", "-unchecked", "-deprecation", "-encoding", "UTF-8")
 testOptions += Tests.Argument(TestFrameworks.JUnit, "-q")
 
-//scalariformSettings
 jacoco.settings
 
 publishMavenStyle := true

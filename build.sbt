@@ -19,7 +19,7 @@ scmInfo := Some(
   )
 )
 
-crossScalaVersions := Seq("2.10.4", "2.11.0", "2.12.0")
+crossScalaVersions := Seq("2.11.0", "2.12.0")
 scalaVersion := "2.12.0"
 
 libraryDependencies ++= Seq(

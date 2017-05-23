@@ -1,0 +1,3 @@
+[submodule "sbt-common"]
+	path = sbt-common
+	url = https://github.com/sptz45/sse-sbt-common.git

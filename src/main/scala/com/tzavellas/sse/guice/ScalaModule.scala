@@ -31,7 +31,7 @@ abstract class ScalaModule extends AbstractModule {
   protected override def bind[T](typeLiteral: TypeLiteral[T]) =
     new RichAnnotatedBindingBuilder(super.bind(typeLiteral))
   
-  protected override def bindConstant() = new RichAnnotatedConstantBindingBuilder(super.bindConstant)
+  protected override def bindConstant = new RichAnnotatedConstantBindingBuilder(super.bindConstant)
 }
 
 private class RichLinkedBindingBuilderImpl[T](val builder: LinkedBindingBuilder[T])

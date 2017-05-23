@@ -12,10 +12,10 @@ import GuiceUtils._
 
 class ScalaModuleTest {
   
-  val in = Guice.createInjector(new SampleModule)
+  private val in = Guice.createInjector(new SampleModule)
   
   @Test
-  def test_for_smoke() {
+  def test_for_smoke(): Unit = {
     assertEquals("holder", in.getInstance(keyOf[Holder[String]]).value)
     assertEquals("provider", in.getInstance(classOf[String]))
     assertEquals("21", in.getInstance(classOf[StringUtils]).reverse("12"))
@@ -24,7 +24,7 @@ class ScalaModuleTest {
 
 class SampleModule extends ScalaModule {
   
-  def configure() {
+  def configure(): Unit = {
 
     bind[Holder[String]].to[StringHolder].in[Singleton]
     bindConstant.annotatedWithName("holderValue").to("holder")

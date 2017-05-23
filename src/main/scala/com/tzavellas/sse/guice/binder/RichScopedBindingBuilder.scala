@@ -12,19 +12,15 @@ trait RichScopedBindingBuilder extends ScopedBindingBuilder {
 
   val builder: ScopedBindingBuilder
   
-  def asEagerSingleton() {
+  def asEagerSingleton(): Unit =
     builder.asEagerSingleton()
-  }
   
-  def in(scopeAnnotation: Class[_ <: Annotation]) {
+  def in(scopeAnnotation: Class[_ <: Annotation]): Unit =
     builder.in(scopeAnnotation)
-  }
   
-  def in(scope: Scope) {
+  def in(scope: Scope): Unit =
     builder.in(scope)
-  }
   
-  def in[A <: Annotation](implicit ann: Manifest[A]) {
+  def in[A <: Annotation](implicit ann: Manifest[A]): Unit =
     builder.in(ann.runtimeClass.asInstanceOf[Class[A]])
-  }
 }

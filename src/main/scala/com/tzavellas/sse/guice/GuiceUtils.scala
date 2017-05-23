@@ -19,5 +19,5 @@ object GuiceUtils {
   }
   
   /** Create a `Key` from a Scala `Manifest`. */
-  def keyOf[A](implicit a: Manifest[A]) = Key.get(typeLiteralOf(a))
+  def keyOf[A](implicit a: Manifest[A]): Key[A] = Key.get(typeLiteralOf(a))
 }

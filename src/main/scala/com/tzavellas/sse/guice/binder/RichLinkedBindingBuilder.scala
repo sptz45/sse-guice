@@ -40,7 +40,7 @@ trait RichLinkedBindingBuilder[T] extends LinkedBindingBuilder[T]
     this
   }
   
-  def toInstance(instance: T) {
+  def toInstance(instance: T): Unit = {
     builder.toInstance(instance)
   }
   
